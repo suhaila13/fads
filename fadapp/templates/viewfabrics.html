@@ -1,0 +1,28 @@
+{% extends 'customer.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+
+                        {% for fab in fabs %}
+                        <div class="col-lg-4">
+                            <img src="{{ fab.fabric_image }}" alt="">
+                            {{ fab.fabric_name }}
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

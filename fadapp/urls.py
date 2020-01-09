@@ -10,5 +10,6 @@ urlpatterns =[
     path('viewdesigner',views.fn_viewdesigner),
     path('designerprof',views.fn_designer_details),
     path('logout', views.fn_logout),
-    path('editprofile/', views.fn_edit_profile)
+    path('editprofile/', views.fn_edit_profile),
+    path('viewfabrics',views.fn_viewfabrics)
 ]

@@ -103,3 +103,7 @@ def fn_edit_profile(req):
     designer_detail_obj.save()
 
     return HttpResponse('1')
+
+def fn_viewfabrics(req):
+    fabrics = DesginerFabrics.objects.all()
+    return render(req, 'viewfabrics.html', {'fabs': fabrics})   

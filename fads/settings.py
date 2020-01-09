@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'fads',
         'USER':'root',
-        'PASSWORD':''
+        'PASSWORD':'12345678'
     }
 }
 

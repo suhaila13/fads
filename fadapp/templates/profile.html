@@ -1,0 +1,114 @@
+{% extends 'designer.html' %}
+
+{% block content %}
+{% load static %}
+<script>
+
+    function fn_cancel_edit_pro() {
+        $('#cancel-btn').attr('hidden', 'hidden');
+        $('.edit-pro').attr('readonly', 'readonly');
+        $('#edit-btn').html('Edit')
+    }
+
+    function fn_edit_profile(e) {
+        if (e.target.innerHTML == 'Edit') {
+            $(".edit-pro").removeAttr('readonly');
+            e.target.innerHTML = 'Update';
+            $('#cancel-btn').removeAttr('hidden');
+        } else {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/fadapp/editprofile/',
+                type: 'POST',
+                data: {
+                    fname: $('.edit-pro')[0].value,
+                    lname: $('.edit-pro')[1].value,
+                    phone: $('.edit-pro')[2].value,
+                    boutiqueName: $('.edit-pro')[3].value,
+                    qualification: $('.edit-pro')[4].value,
+                    about: $('.edit-pro')[5].value,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: res => {
+                    if (res == 1) {
+                        $('#cancel-btn').attr('hidden', 'hidden');
+                        $(".edit-pro").attr('readonly', 'readonly');
+                        e.target.innerHTML = 'Edit';
+                    }
+                },
+                error: err => {
+                    console.log(err);
+                }
+            })
+        }
+    }
+
+</script>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card" style="background-image: url({% static 'images/woman.jpg' %});">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="text" readonly value="{{ details.firstname }}" class="form-control edit-pro">
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" readonly value="{{ details.lastname }}" class="form-control edit-pro">
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-lg-12">
+                            <input type="text" value="{{ details.dob }}" readonly class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-lg-12">
+                            <input type="text" value="{{ details.mobile }}" readonly class="form-control edit-pro">
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-lg-12">
+                            <input type="text" readonly value=" {{ designerDetail.boutiquename }}"
+                                class="form-control edit-pro">
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-lg-12">
+                            <input type="text" readonly value="{{ designerDetail.qualification }}"
+                                class="form-control edit-pro">
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-lg-12">
+                            <textarea class="form-control edit-pro" readonly>{{ designerDetail.about }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-lg-1">
+                            <button id="edit-btn" onclick="fn_edit_profile(event);" class="btn btn-info">Edit</button>
+                        </div>
+                        <div class="col-lg-1">
+                            <button onclick="fn_cancel_edit_pro();" hidden id="cancel-btn" class="btn btn-light">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+
+{% endblock %}

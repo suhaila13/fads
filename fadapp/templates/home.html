@@ -1,0 +1,245 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(() => {
+
+            $('#desg-detail').hide();
+
+            $('#userType').change(() => {
+                if ($('#userType').find(":selected").text() == 'Designer') {
+                    $('#desg-detail').show();
+                } else {
+                    $('#desg-detail').hide();
+                }
+            });
+
+        });
+    </script>
+</head>
+
+
+
+
+<body>
+        
+
+    <div class="container-fluid">
+
+        
+
+        <div class="row"> 
+            
+                <div class="col-lg-10"></div>
+                <div class="col-lg-2">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#signUp">
+                        SignUp
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#login">
+                        Login
+                    </button>
+                </div>    
+               
+
+
+      
+                <div id="demo" class="carousel slide" data-ride="carousel" style="margin-top:-40px; z-index: -1;">
+    
+                    <!-- Indicators -->
+                    <ul class="carousel-indicators">
+                      <li data-target="#demo" data-slide-to="0" class="active"></li>
+                      <li data-target="#demo" data-slide-to="1"></li>
+                      <li data-target="#demo" data-slide-to="2"></li>
+                    </ul>
+                  
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">
+
+
+            
+
+                      <div class="carousel-item active">
+                        <img src="{% static 'images/style.jpg' %}" style="min-height: 500px;" alt="style"> 
+                        
+                        
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'images/woman.jpg' %}" style="min-height: 500px; width: 1270px;" alt="style"> 
+                        
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'images/beauti.jpg' %}" style="min-height: 500px; width: 1270px;" alt="style"> 
+                        
+                      </div>
+                    </div>
+                  
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                      <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                      <span class="carousel-control-next-icon"></span>
+                    </a>
+                  
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                
+
+
+        </div>
+    
+    
+</div>    
+              
+
+</body>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="signUp">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">SignUp</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Firstname" class="form-control" name="fname">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Lastname" class="form-control" name="lstname">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <input type="text" placeholder="Username" class="form-control" name="uname">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <input type="text" placeholder="Password" class="form-control" name="passw">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <input type="text" placeholder="Confirm password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <input type="radio" value="male" name="gender">Male
+                                <input type="radio" value="female" name="gender">Female
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-lg-12">
+                                <input type="date" placeholder="dd-mm-yyyy" name="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <input type="text" placeholder="mobile no" class="form-control" name="mbl">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <select id="userType" class="form-control" name="select">
+                                    <option value="customer">Customer</option>
+                                    <option value="designer">Designer</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="desg-detail">
+                            <div class="row mt-1">
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" placeholder="boutique name" name="dsgn">
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" placeholder="qualification" name="qualif">
+                                </div>
+                            </div>
+
+                            <div class="row mt-1">
+                                <div class="col-lg-12">
+                                    <textarea name="about" class="form-control" placeholder="About"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">SignUp</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="login">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Login</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container">
+                    <form method="POST" action="/fadapp/login/">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-12 p-2">
+                                <input type="text" placeholder="Username" class="form-control" name="uname">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 p-2">
+                                <input type="text" placeholder="password" class="form-control" name="passw">
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">login</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</html>

@@ -1,0 +1,70 @@
+{% extends 'designer.html' %}
+
+{% block content %}
+{% load static %}
+
+<script>
+    function fn_upload_image() {
+        $('#fileInput').click();
+    }
+</script>
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-6">
+            <div class="card" style="background-image: url({% static 'images/cloth.jpg' %});">
+                <div class="card-body">
+
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="text" placeholder="Fabric name" class="form-control" name="fbrname">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <input type="number" placeholder="Fabric cost" class="form-control" name="fbrcost">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <textarea placeholder="Fabric description" class="form-control" name="fbrdes"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <button type="button" onclick="fn_upload_image();" class="btn btn-light form-control">upload
+                                    image</button>
+                                <input type="file" name="img" hidden id="fileInput">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-info form-control">Save</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    {% if status %}
+                    <div class="row mt-2">
+                        <div class="col-lg-6">
+                            <div class="alert alert-success">
+                                New fabric added
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

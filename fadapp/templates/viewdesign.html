@@ -1,0 +1,38 @@
+{% extends 'customer.html' %}
+{% block content %}
+
+<style>
+    .mag-on-hover {
+        transition: 0.5s;
+        background-color: rgb(255, 250, 250);
+    }
+
+    .mag-on-hover:hover {
+        transform: scale(1.1);
+    }
+</style>
+
+<div class="card">
+    <div class="card-body">
+
+        <div class="row">
+
+            {% for designer in designers %}
+            <div class="col-lg-4">
+                <a href="/fadapp/designerprof?id={{ designer.id }}">
+                    <div class="card mag-on-hover">
+                        <div class="card-body">
+                            {{ designer.username }}
+                            <i class="fa fa-scribd" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

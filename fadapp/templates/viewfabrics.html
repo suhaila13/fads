@@ -2,18 +2,56 @@
 
 {% block content %}
 
+<style>
+.reduce{
+    transition: 0.5s;
+}
+.reduce:hover{
+    transform: scale(0.9);
+}
+
+#desc {
+    display: none;
+    transition: 0.5s;
+    padding: 7px;
+    border-radius: 3px;
+    background-color: rgb(241, 241, 241);
+}
+
+#show-desc:hover #desc{
+    display: block;
+}
+</style>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            
+
             <div class="card">
                 <div class="card-body">
                     <div class="row">
 
                         {% for fab in fabs %}
-                        <div class="col-lg-4">
-                            <img src="{{ fab.fabric_image }}" alt="">
-                            {{ fab.fabric_name }}
+                        <div class="col-lg-4 p-1 reduce" id="show-desc">
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <img src="{{ fab.fabric_image }}" height="120" width="200">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                      
+                                        {{ fab.fabric_name }}
+                                        <div id="desc">
+                                            <i class="fa fa-info" aria-hidden="true"></i>
+                                            {{ fab.fabric_desc }}
+                                        </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            {{ fab.fabric_cost }}
+                                        </div>
+                                        {{ fab.fk_login.fk_login.username }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         {% endfor %}
 

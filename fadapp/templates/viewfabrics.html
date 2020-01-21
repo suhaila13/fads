@@ -12,7 +12,7 @@
 
                         {% for fab in fabs %}
                         <div class="col-lg-4">
-                            <img src="{{ fab.fabric_image }}" alt="">
+                            <img src="{{ fab.fabric_image.url }}" alt="">
                             {{ fab.fabric_name }}
                         </div>
                         {% endfor %}

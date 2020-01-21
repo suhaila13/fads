@@ -1,0 +1,6 @@
+**/*.pyc
+**/*.log
+*.pyc
+fads/__pycache__
+fadapp/__pycache__
+media/
